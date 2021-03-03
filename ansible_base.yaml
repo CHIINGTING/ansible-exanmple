@@ -1,0 +1,9 @@
+- hosts: tag_Name_foo
+  tasks:
+    -action: ec2_facts
+- hosts: localhost
+  vars:
+    instance_id: {{hostvars[groups['tag_Name_foo'][0]]['ansible_ec2_instance_id']}}
+  tasks: 
+    - name: print out the instance id for the foo instance
+      debug: msg=instance-id us {{instance_id}}
